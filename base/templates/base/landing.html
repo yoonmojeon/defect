@@ -1,0 +1,28 @@
+{% load static %}
+<html>
+
+<head>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <style>
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 50px;
+        }
+    </style>
+</head>
+
+<body class="landing-page">
+    <h1>다학제 캡스톤 디자인 Project</h1>
+    {#<img src="{% static '동국대.png' %}">#}
+    <div class="button-container"> 
+    <a href="{% url 'base:home' %}">
+        <button style="color: black;">Go To Find Defect</button>
+    </a>
+    <a href="{% url 'base:upload' %}">
+        <button style="color: black;">Check by Expert</button>
+    </a>
+    </div>  
+</body>
+
+</html>

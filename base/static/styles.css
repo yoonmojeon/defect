@@ -1,0 +1,68 @@
+h1{
+    color: white;
+    font-family: Baloo Bhaina;
+    font-size: 50px;
+    font-style: normal;
+    line-height: normal;
+    font-weight: 900;
+}
+
+h2{
+    color: white;
+    font-family: Baloo Bhaina;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    font-weight: 500;
+}
+
+#images-container {
+    display: block;
+}
+
+.image-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    background-color: black;
+    background-image: url('동국대.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;  
+    background-size: 30% 50%;
+    background-position: center;
+}
+
+
+.upload-label {
+    color: white;
+}
+
+.white-text {
+    color: white;
+}
+
+.pagination {
+    color: white;
+}
+
+.landing-page {
+    background-color: black;
+    color: white;
+    height: 100vh;  /* viewport의 높이를 100%로 설정하여 전체 화면을 채우도록 합니다. */
+    display: flex;  /* flexbox 레이아웃을 사용합니다. */
+    flex-direction: column;  /* 요소들이 수직으로 배치되도록 합니다. */
+    justify-content: space-between;  /* 첫 번째 요소와 마지막 요소를 각각 컨테이너의 시작점과 끝점에 배치합니다. */
+    align-items: center;  /* 요소들을 세로 방향으로 중앙에 배치합니다. */
+    padding: 20px;  /* 컨테이너의 상단과 하단에 여백을 추가합니다. */
+}
+
+.landing-page button {
+    position: relative;
+    background-color: white;
+    bottom: 100px;  /* 버튼을 50픽셀만큼 위로 이동시킵니다. */
+    width: 200px;  /* 버튼의 너비를 200픽셀로 설정합니다. */
+    height: 50px;
+}

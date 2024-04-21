@@ -1,0 +1,114 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<style>
+  .uploaded-images {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 200px;
+    height: 100%;
+    overflow: auto;
+    background-color: #808080;
+    padding: 20px;
+    color: #FFFFFF;
+  }
+  .uploaded-images img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+  }
+</style>
+
+<div class="uploaded-images">
+  <h2>Uploaded Images</h2>
+  {% for image_info in page_obj %}
+    <img src="{{ image_info.uploaded_image }}" alt="Uploaded Image">
+  {% endfor %}
+</div>
+
+  <h2>Image Upload</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="image" class="upload-label">Image Upload:</label>
+    <input type="file" name="image" accept="image/*" multiple required><br>
+
+    <input type="submit" value="Upload">
+  </form>
+
+  <div id="images-container">
+    {% for image_info in page_obj %}  <!-- 'page_obj'를 사용하여 이미지를 순회합니다. -->
+      <div class="image-container">
+        <h2>Original Image</h2>
+        <img src="{{ image_info.uploaded_image }}" alt="Original Image" width="600" height="200">
+      </div>
+
+      <div class="image-container">
+        <h2>Resulting Image</h2>
+        <img src="{{ image_info.result_image }}" alt="Resulting Image" width="600" height="200">
+      </div>
+
+      <div class="image-container">
+        <h2>Class Name</h2>
+        <p class="white-text">{{ image_info.class_name }}</p>
+      </div>
+
+      <div class="image-container">
+        <h2>Class Score</h2>
+        <p class="white-text">{{ image_info.score }}</p>
+      </div>
+
+    {% endfor %}
+  </div>
+
+  <div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}  <!-- 이전 페이지가 있을 경우 '이전' 링크를 표시합니다. -->
+            <a href="?page={{ page_obj.previous_page_number }}">이전</a>
+        {% endif %}
+
+        <span class="current">  <!-- 현재 페이지 번호를 표시합니다. -->
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}  <!-- 다음 페이지가 있을 경우 '다음' 링크를 표시합니다. -->
+            <a href="?page={{ page_obj.next_page_number }}">다음</a>
+        {% endif %}
+    </span>
+  </div>
+
+  <!-- 추가된 표 -->
+  <h2>Class Counts</h2>
+  <table>
+    <tr>
+      <th class="white-text">Class</th>
+      <th class="white-text">Count</th>
+      <th class="white-text">File Name</th>
+    </tr>
+    {% for class_count in class_counts %}
+      <tr class="white-text">
+        <td>{{uploaded_image.class_name}}</td>
+        <td>{{ class_count.class }}</td>
+        <td>{{ class_count.count }}</td>
+        <td>
+            {% for image_info in page_obj %}
+                {% if image_info.class_name == class_count.class %}
+                    {{ image_info.file_name }}{% if not forloop.last %}, {% endif %}
+                {% endif %}
+            {% endfor %}
+        </td>
+      </tr>
+    {% endfor %}
+  </table>
+
+  {% block extra_style %}
+  <style>
+    body {
+      background-image: url('동국대.png');
+      background-size: 30% 50%;
+    }
+  </style>
+  {% endblock %}
+
+{% endblock %}
+

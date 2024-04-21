@@ -1,0 +1,10 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<img src="{{ image.image.url }}" alt="Uploaded image">
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save text</button>
+</form>
+{% endblock %}

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Uploaded Image</title>
+</head>
+<body>
+    <h1>Uploaded Image</h1>
+
+    <!-- 이미지 객체의 file 필드의 url 속성을 사용하여 이미지를 표시합니다. -->
+    <img src="{{ image.file.url }}" alt="Uploaded image">
+
+    <!-- 사용자가 다른 이미지를 업로드할 수 있도록 업로드 페이지로 돌아가는 링크를 제공합니다. -->
+    <p><a href="{% url 'upload' %}">Upload another image</a></p>
+</body>
+</html>
